@@ -214,9 +214,9 @@ InformationCol_recipr = function(Gamma,graph,partition){
 
 ## Function to compute the starting point for the reciorocal scoring algorithm. It averages over the empirical weights in each color class.
 
-start_recipr = function(Qhat,graph,partition){
+start_recipr = function(vario,graph,partition){
   edges=ends(graph,E(graph))
-  Gamma= Theta2Gamma(Q2Theta(Qhat))
+  Gamma= vario
   dim2=length(partition)
   nu=rep(0,dim2)
   for (i in 1:dim2) {
