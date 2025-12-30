@@ -111,8 +111,7 @@ omega2Q = function(omega,graph,partition){
 
 start = function(vario,graph,partition){
   edges=ends(graph,E(graph))
-  Gam=complete_Gamma(Gamma = vario,graph = graph)
-  Q=Theta2Q(Gamma2Theta(Gam))
+  Q=Theta2Q(Gamma2Theta(vario))
   dim2=length(partition)
   omega=rep(0,dim2)
   for (i in 1:dim2) {
@@ -229,10 +228,11 @@ start_recipr = function(vario,graph,partition){
 
 ## Reciprocal scoring algorithm.
 
-Scoring_alg_col_recipr = function(Qhat,graph,partition,start_recipr,tol = 1e-10,maxiter=1000,verbose=FALSE){
+Scoring_alg_col_recipr = function(Qhat,graph,partition,start_recipr,start_Gamma,tol = 1e-10,maxiter=1000,verbose=FALSE){
   edges=ends(graph,E(graph))
   nu=start_recipr
-  Gamma= nu2Gamma(nu,graph,partition,N=1000)
+  #Gamma= nu2Gamma(nu,graph,partition,start=TRUE,start_Gamma = matrix(mean(start_recipr),nrow = nrow(Qhat),ncol = ncol(Qhat)) ,N=1000)
+  Gamma=start_Gamma
   S=scoresCol_recipr(Gamma=Gamma, Qhat = Qhat, graph = graph,partition=partition)  
   gap=Inf
   iter=0
